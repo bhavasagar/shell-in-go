@@ -31,10 +31,15 @@ func main() {
 
 		cmd := input_eval[0]
 		args := input_eval[1:]
+		builtins := [...]string{"echo", "type", "exit"}
 
 		switch cmd {
 		case "echo":
 			fmt.Println(strings.Join(args, " "))
+		case "type":
+			if contains(builtins[:], args[0]) >= 0 {
+				fmt.Println(cmd, "is a shell builtin")
+			}
 		case "exit":
 			exit_status := 0
 			if len(args) > 0 {
@@ -45,4 +50,13 @@ func main() {
 			fmt.Println(cmd + ": command not found")
 		}
 	}
+}
+
+func contains(arr []string, target string) int {
+	for i, v := range arr {
+		if target == v {
+			return i
+		}
+	}
+	return -1
 }
