@@ -48,7 +48,8 @@ func main() {
 				fmt.Println(args[0] + ": not found")
 			}
 		case "pwd":
-			fmt.Println(os.Getwd())
+			dir, _ := os.Getwd()
+			fmt.Println(dir)
 		case "exit":
 			exit_status := 0
 			if len(args) > 0 {
