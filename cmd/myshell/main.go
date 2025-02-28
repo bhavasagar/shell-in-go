@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"runtime"
 )
 
 func main() {
@@ -14,7 +15,11 @@ func main() {
 		os.Exit(1)
 	}
 
-	max_cap := len(input) - 2
+	os := runtime.GOOS
+	max_cap := len(input) - 1
+	if os == "windows" {
+		max_cap--
+	}
 	cmd := input[:max_cap]
 
 	switch cmd {
