@@ -56,8 +56,11 @@ func main() {
 		default:
 			cmd_path := getCmdPath(cmd)
 			if len(cmd_path) > 0 {
-				program := exec.Command(cmd_path, args...)
-				program.Run()
+				program := exec.Command(cmd, args...)
+				err := program.Run()
+				if err != nil {
+					fmt.Println(cmd + ": command not found")
+				}
 			} else {
 				fmt.Println(cmd + ": command not found")
 			}
