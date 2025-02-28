@@ -38,11 +38,11 @@ func main() {
 		case "echo":
 			fmt.Println(strings.Join(args, " "))
 		case "type":
-			cmd_path := getCmdPath(cmd)
+			cmd_path := getCmdPath(args[0])
 			if contains(builtins[:], args[0]) >= 0 {
 				fmt.Println(args[0], "is a shell builtin")
 			} else if len(cmd_path) > 0 {
-				fmt.Println(cmd, "is", cmd_path)
+				fmt.Println(args[0], "is", cmd_path)
 			} else {
 				fmt.Println(args[0] + ": not found")
 			}
@@ -72,9 +72,9 @@ func getCmdPath(cmd string) string {
 	if !exists {
 		return ""
 	}
-	paths := strings.Split(path_env, ",")
+	paths := strings.Split(path_env, ":")
 	for _, path := range paths {
-		if _, err := os.Stat(path + "/" + cmd); errors.Is(err, os.ErrNotExist) {
+		if _, err := os.Stat(path + "/" + cmd); !errors.Is(err, os.ErrNotExist) {
 			return path + "/" + cmd
 		}
 	}
