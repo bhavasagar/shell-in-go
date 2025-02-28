@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"os"
+	"os/exec"
 	"runtime"
 	"strconv"
 	"strings"
@@ -53,7 +54,13 @@ func main() {
 			}
 			os.Exit(exit_status)
 		default:
-			fmt.Println(cmd + ": command not found")
+			cmd_path := getCmdPath(cmd)
+			if len(cmd_path) > 0 {
+				program := exec.Command(cmd_path, args...)
+				program.Output()
+			} else {
+				fmt.Println(cmd + ": command not found")
+			}
 		}
 	}
 }
