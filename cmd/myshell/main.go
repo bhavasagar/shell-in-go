@@ -39,6 +39,8 @@ func main() {
 		case "type":
 			if contains(builtins[:], args[0]) >= 0 {
 				fmt.Println(args[0], "is a shell builtin")
+			} else {
+				fmt.Println(args[0] + ":not found")
 			}
 		case "exit":
 			exit_status := 0
