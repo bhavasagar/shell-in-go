@@ -57,10 +57,8 @@ func main() {
 			cmd_path := getCmdPath(cmd)
 			fmt.Println("cmd_path", cmd_path)
 			if len(cmd_path) > 0 {
-				program := exec.Command(cmd, args...)
+				program := exec.Command(cmd_path, args...)
 				program.Output()
-				tst := exec.Command("ping", "google.com")
-				tst.Output()
 			} else {
 				fmt.Println(cmd + ": command not found")
 			}
