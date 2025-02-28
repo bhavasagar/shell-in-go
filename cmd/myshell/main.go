@@ -33,10 +33,13 @@ func main() {
 		args := input_eval[1:]
 
 		switch cmd {
-		case "TEST_CMD":
-			fmt.Println("Executing TEST_CMD")
+		case "echo":
+			fmt.Println(strings.Join(args, " "))
 		case "exit":
-			exit_status, _ := strconv.Atoi(args[0])
+			exit_status := 0
+			if len(args) > 0 {
+				exit_status, _ = strconv.Atoi(args[0])
+			}
 			os.Exit(exit_status)
 		default:
 			fmt.Println(cmd + ": command not found")
