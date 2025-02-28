@@ -38,7 +38,7 @@ func main() {
 			fmt.Println(strings.Join(args, " "))
 		case "type":
 			if contains(builtins[:], args[0]) >= 0 {
-				fmt.Println(cmd, "is a shell builtin")
+				fmt.Println(args[0], "is a shell builtin")
 			}
 		case "exit":
 			exit_status := 0
