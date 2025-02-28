@@ -33,7 +33,7 @@ func main() {
 
 		cmd := input_eval[0]
 		args := input_eval[1:]
-		builtins := [...]string{"echo", "type", "exit"}
+		builtins := [...]string{"echo", "type", "exit", "pwd"}
 
 		switch cmd {
 		case "echo":
