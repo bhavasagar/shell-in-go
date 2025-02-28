@@ -26,7 +26,7 @@ func main() {
 	case "TEST_CMD":
 		fmt.Println("Executing TEST_CMD")
 	default:
-		fmt.Println(cmd + ": Command not found")
+		fmt.Println(cmd + ": command not found")
 	}
 
 }
