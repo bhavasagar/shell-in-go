@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"os"
 	"runtime"
+	"strconv"
+	"strings"
 )
 
 func main() {
@@ -16,16 +18,26 @@ func main() {
 			os.Exit(1)
 		}
 
-		os := runtime.GOOS
+		runtime := runtime.GOOS
 		max_cap := len(input) - 1
-		if os == "windows" {
+		if runtime == "windows" {
 			max_cap--
 		}
-		cmd := input[:max_cap]
+
+		input_eval := strings.Split(input[:max_cap], " ")
+		if len(input_eval) == 0 {
+			continue
+		}
+
+		cmd := input_eval[0]
+		args := input_eval[1:]
 
 		switch cmd {
 		case "TEST_CMD":
 			fmt.Println("Executing TEST_CMD")
+		case "exit":
+			exit_status, _ := strconv.Atoi(args[0])
+			os.Exit(exit_status)
 		default:
 			fmt.Println(cmd + ": command not found")
 		}
